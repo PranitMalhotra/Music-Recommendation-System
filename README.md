@@ -10,5 +10,5 @@ The recommendation system should be able to provide personalized music recommend
   git clone git@github.com:PranitMalhotra/Music-Recommendation-System.git
   cd Music-Recommendation-System
 
-  # Jupyter Notebook: 'main.ipynb'
+  # Open the Jupyter Notebook called 'main.ipynb' in your preferred code editor/Jupyter Lab/Jupyter Notebook.
 ```
