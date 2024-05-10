@@ -7,5 +7,8 @@ The recommendation system should be able to provide personalized music recommend
 ## Installation
 
 ```bash
-  blah blah
+  git clone git@github.com:PranitMalhotra/Music-Recommendation-System.git
+  cd Music-Recommendation-System
+
+  # Jupyter Notebook: 'main.ipynb'
 ```

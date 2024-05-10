@@ -7563,7 +7563,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1.-Data-Collection">1. Data Collection<a class="anchor-link" href="#1.-Data-Collection">¶</a></h2><p>This dataset has been downloaded from Kaggle.</p>
+<h2 id="1.-Data-Collection">1. Data Collection<a class="anchor-link" href="#1.-Data-Collection">¶</a></h2><p>The data was collected with the help of <a href="https://github.com/watsonbox/exportify">exportify</a>.</p>
+<p>Alternatively, the data could also be scraped off Spotify using the <a href="https://spotipy.readthedocs.io/en/2.22.1/">Spotipy</a> library.</p>
 </div>
 </div>
 </div>
@@ -7575,10 +7576,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># making dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'datasets/biggest_playlist_ever.csv'</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">'warn'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'datasets/biggest_playlist_ever.csv'</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">'warn'</span><span class="p">)</span>
 
-<span class="c1"># output the dataframe </span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -7928,6 +7927,17 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The code below removes the columns labeled <strong>Artist IDs</strong>, <strong>Added By</strong>, and <strong>Added At</strong> from the DataFrame <strong>df</strong>. The <code>axis=1</code> parameter specifies that the operation is performed along columns, and <code>inplace=True</code> ensures that the changes are applied to the DataFrame <strong>df</strong> itself rather than creating a new DataFrame.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7936,8 +7946,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Removing columns that are not required</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Artist IDs'</span><span class="p">,</span> <span class="s1">'Added By'</span><span class="p">,</span> <span class="s1">'Added At'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Artist IDs'</span><span class="p">,</span> <span class="s1">'Added By'</span><span class="p">,</span> <span class="s1">'Added At'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">df</span>
 </pre></div>
@@ -8261,7 +8270,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.2-Creating-the-Final-DataFrame">2.2 Creating the Final DataFrame<a class="anchor-link" href="#2.2-Creating-the-Final-DataFrame">¶</a></h2>
+<h2 id="2.2-Additional-Pre-Processing">2.2 Additional Pre-Processing<a class="anchor-link" href="#2.2-Additional-Pre-Processing">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8273,24 +8282,19 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'playlist'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'For Data Science'</span>
-
-<span class="n">df</span><span class="p">[</span><span class="s1">'uri'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'spotify:track:'</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Spotify ID'</span><span class="p">]</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'Track Name'</span><span class="p">,</span> <span class="s1">'Album Name'</span><span class="p">,</span> <span class="s1">'Artist Name(s)'</span><span class="p">,</span> <span class="s1">'Release Date'</span><span class="p">,</span> <span class="s1">'Popularity'</span><span class="p">,</span> <span class="s1">'Duration (ms)'</span><span class="p">,</span> <span class="s1">'uri'</span><span class="p">,</span> <span class="s1">'Spotify ID'</span><span class="p">,</span> <span class="s1">'Acousticness'</span><span class="p">,</span> <span class="s1">'Danceability'</span><span class="p">,</span> <span class="s1">'Energy'</span><span class="p">,</span> <span class="s1">'Instrumentalness'</span><span class="p">,</span> <span class="s1">'Key'</span><span class="p">,</span> <span class="s1">'Liveness'</span><span class="p">,</span> <span class="s1">'Loudness'</span><span class="p">,</span> <span class="s1">'Mode'</span><span class="p">,</span> <span class="s1">'Speechiness'</span><span class="p">,</span> <span class="s1">'Tempo'</span><span class="p">,</span> <span class="s1">'Time Signature'</span><span class="p">,</span> <span class="s1">'Valence'</span><span class="p">,</span> <span class="s1">'Genres'</span><span class="p">,</span> <span class="s1">'playlist'</span><span class="p">]]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'Track Name'</span><span class="p">,</span> <span class="s1">'Album Name'</span><span class="p">,</span> <span class="s1">'Artist Name(s)'</span><span class="p">,</span> <span class="s1">'Release Date'</span><span class="p">,</span> <span class="s1">'Popularity'</span><span class="p">,</span> <span class="s1">'Duration (ms)'</span><span class="p">,</span> <span class="s1">'Spotify ID'</span><span class="p">,</span> <span class="s1">'Acousticness'</span><span class="p">,</span> <span class="s1">'Danceability'</span><span class="p">,</span> <span class="s1">'Energy'</span><span class="p">,</span> <span class="s1">'Instrumentalness'</span><span class="p">,</span> <span class="s1">'Key'</span><span class="p">,</span> <span class="s1">'Liveness'</span><span class="p">,</span> <span class="s1">'Loudness'</span><span class="p">,</span> <span class="s1">'Mode'</span><span class="p">,</span> <span class="s1">'Speechiness'</span><span class="p">,</span> <span class="s1">'Tempo'</span><span class="p">,</span> <span class="s1">'Time Signature'</span><span class="p">,</span> <span class="s1">'Valence'</span><span class="p">,</span> <span class="s1">'Genres'</span><span class="p">]]</span>
 
 
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'album'</span><span class="p">,</span>
              <span class="s1">'artist'</span><span class="p">,</span> <span class="s1">'year'</span><span class="p">,</span>
-             <span class="s1">'popularity'</span><span class="p">,</span> <span class="s1">'duration_ms'</span><span class="p">,</span>
-             <span class="s1">'uri'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span>
+             <span class="s1">'popularity'</span><span class="p">,</span> <span class="s1">'duration_ms'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span>
              <span class="s1">'acousticness'</span><span class="p">,</span> <span class="s1">'danceability'</span><span class="p">,</span>
              <span class="s1">'energy'</span><span class="p">,</span> <span class="s1">'instrumentalness'</span><span class="p">,</span>
              <span class="s1">'key'</span><span class="p">,</span> <span class="s1">'liveness'</span><span class="p">,</span>
              <span class="s1">'loudness'</span><span class="p">,</span> <span class="s1">'mode'</span><span class="p">,</span>
              <span class="s1">'speechiness'</span><span class="p">,</span> <span class="s1">'tempo'</span><span class="p">,</span>
              <span class="s1">'time_signature'</span><span class="p">,</span> <span class="s1">'valence'</span><span class="p">,</span>
-             <span class="s1">'artist_genre'</span><span class="p">,</span> <span class="s1">'playlist'</span><span class="p">]</span>
+             <span class="s1">'artist_genre'</span><span class="p">]</span>
 
 <span class="n">df</span>
 </pre></div>
@@ -8329,11 +8333,11 @@ a.anchor-link {
 <th>year</th>
 <th>popularity</th>
 <th>duration_ms</th>
-<th>uri</th>
 <th>id</th>
 <th>acousticness</th>
 <th>danceability</th>
-<th>...</th>
+<th>energy</th>
+<th>instrumentalness</th>
 <th>key</th>
 <th>liveness</th>
 <th>loudness</th>
@@ -8343,7 +8347,6 @@ a.anchor-link {
 <th>time_signature</th>
 <th>valence</th>
 <th>artist_genre</th>
-<th>playlist</th>
 </tr>
 </thead>
 <tbody>
@@ -8355,11 +8358,11 @@ a.anchor-link {
 <td>2014-05-20</td>
 <td>0</td>
 <td>241688</td>
-<td>spotify:track:7dS5EaCoMnN7DzlpT6aRn2</td>
 <td>7dS5EaCoMnN7DzlpT6aRn2</td>
 <td>0.63400</td>
 <td>0.566</td>
-<td>...</td>
+<td>0.664</td>
+<td>0.000000</td>
 <td>4</td>
 <td>0.116</td>
 <td>-5.303</td>
@@ -8369,7 +8372,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.437</td>
 <td>irish singer-songwriter,modern rock,pov: indie</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>1</th>
@@ -8379,11 +8381,11 @@ a.anchor-link {
 <td>2010-08-09</td>
 <td>79</td>
 <td>213293</td>
-<td>spotify:track:2V4bv1fNWfTcyRJKmej6Sj</td>
 <td>2V4bv1fNWfTcyRJKmej6Sj</td>
 <td>0.17900</td>
 <td>0.768</td>
-<td>...</td>
+<td>0.820</td>
+<td>0.000000</td>
 <td>7</td>
 <td>0.689</td>
 <td>-4.630</td>
@@ -8393,7 +8395,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.625</td>
 <td>dance pop,pop,pop dance,pop rap,filter house,n...</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>2</th>
@@ -8403,11 +8404,11 @@ a.anchor-link {
 <td>2017-07-21</td>
 <td>89</td>
 <td>180386</td>
-<td>spotify:track:7KA4W4McWYRpgf0fWsJZWB</td>
 <td>7KA4W4McWYRpgf0fWsJZWB</td>
 <td>0.37100</td>
 <td>0.558</td>
-<td>...</td>
+<td>0.559</td>
+<td>0.000007</td>
 <td>6</td>
 <td>0.109</td>
 <td>-9.222</td>
@@ -8417,7 +8418,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.620</td>
 <td>hip hop,rap,colombian pop</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>3</th>
@@ -8427,11 +8427,11 @@ a.anchor-link {
 <td>2013-01-01</td>
 <td>73</td>
 <td>214147</td>
-<td>spotify:track:3gbBpTdY8lnQwqxNCcf795</td>
 <td>3gbBpTdY8lnQwqxNCcf795</td>
 <td>0.07550</td>
 <td>0.679</td>
-<td>...</td>
+<td>0.715</td>
+<td>0.000000</td>
 <td>9</td>
 <td>0.271</td>
 <td>-6.383</td>
@@ -8441,7 +8441,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.571</td>
 <td>metropopolis,modern rock,pop</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>4</th>
@@ -8451,11 +8450,11 @@ a.anchor-link {
 <td>2005-11-28</td>
 <td>87</td>
 <td>218093</td>
-<td>spotify:track:3ZFTkvIE7kyPt6Nu3PEa7V</td>
 <td>3ZFTkvIE7kyPt6Nu3PEa7V</td>
 <td>0.28400</td>
 <td>0.778</td>
-<td>...</td>
+<td>0.824</td>
+<td>0.000000</td>
 <td>10</td>
 <td>0.405</td>
 <td>-5.892</td>
@@ -8465,11 +8464,9 @@ a.anchor-link {
 <td>4</td>
 <td>0.758</td>
 <td>colombian pop,dance pop,latin pop,pop,rap kreyol</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>...</th>
-<td>...</td>
 <td>...</td>
 <td>...</td>
 <td>...</td>
@@ -8499,11 +8496,11 @@ a.anchor-link {
 <td>2009-07-15</td>
 <td>67</td>
 <td>215960</td>
-<td>spotify:track:4Zcz6saEkOII3PlXd9gN3o</td>
 <td>4Zcz6saEkOII3PlXd9gN3o</td>
 <td>0.24300</td>
 <td>0.609</td>
-<td>...</td>
+<td>0.679</td>
+<td>0.000000</td>
 <td>0</td>
 <td>0.199</td>
 <td>-4.545</td>
@@ -8513,7 +8510,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.487</td>
 <td>metropopolis,pop,pov: indie,uk alternative pop</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>5290</th>
@@ -8523,11 +8519,11 @@ a.anchor-link {
 <td>2021-04-01</td>
 <td>16</td>
 <td>215507</td>
-<td>spotify:track:61KpQadow081I2AsbeLcsb</td>
 <td>61KpQadow081I2AsbeLcsb</td>
 <td>0.59300</td>
 <td>0.439</td>
-<td>...</td>
+<td>0.610</td>
+<td>0.000011</td>
 <td>9</td>
 <td>0.341</td>
 <td>-7.236</td>
@@ -8537,7 +8533,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.172</td>
 <td>pop</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>5291</th>
@@ -8547,11 +8542,11 @@ a.anchor-link {
 <td>2020-12-11</td>
 <td>57</td>
 <td>156005</td>
-<td>spotify:track:5yorXJWdBan1Vlh116ZtQ7</td>
 <td>5yorXJWdBan1Vlh116ZtQ7</td>
 <td>0.09040</td>
 <td>0.897</td>
-<td>...</td>
+<td>0.371</td>
+<td>0.000000</td>
 <td>1</td>
 <td>0.325</td>
 <td>-5.019</td>
@@ -8561,7 +8556,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.441</td>
 <td>rap latina,trap queen</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>5292</th>
@@ -8571,11 +8565,11 @@ a.anchor-link {
 <td>2021-01-15</td>
 <td>73</td>
 <td>178404</td>
-<td>spotify:track:11ZulcYY4lowvcQm4oe3VJ</td>
 <td>11ZulcYY4lowvcQm4oe3VJ</td>
 <td>0.00151</td>
 <td>0.964</td>
-<td>...</td>
+<td>0.398</td>
+<td>0.000039</td>
 <td>11</td>
 <td>0.101</td>
 <td>-8.981</td>
@@ -8585,7 +8579,6 @@ a.anchor-link {
 <td>4</td>
 <td>0.563</td>
 <td>alt z,escape room,alternative r&amp;b,lgbtq+ hip h...</td>
-<td>For Data Science</td>
 </tr>
 <tr>
 <th>5293</th>
@@ -8595,11 +8588,11 @@ a.anchor-link {
 <td>2020-12-04</td>
 <td>84</td>
 <td>160191</td>
-<td>spotify:track:6tDDoYIxWvMLTdKpjFkc1B</td>
 <td>6tDDoYIxWvMLTdKpjFkc1B</td>
 <td>0.11200</td>
 <td>0.653</td>
-<td>...</td>
+<td>0.524</td>
+<td>0.000000</td>
 <td>11</td>
 <td>0.203</td>
 <td>-9.016</td>
@@ -8609,11 +8602,10 @@ a.anchor-link {
 <td>4</td>
 <td>0.553</td>
 <td>colombian pop</td>
-<td>For Data Science</td>
 </tr>
 </tbody>
 </table>
-<p>5294 rows × 22 columns</p>
+<p>5294 rows × 20 columns</p>
 </div>
 </div>
 </div>
@@ -8637,11 +8629,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.1-Creating-a-Unique-List-of-All-Genres">3.1 Creating a Unique List of All Genres<a class="anchor-link" href="#3.1-Creating-a-Unique-List-of-All-Genres">¶</a></h3>
+<h3 id="3.1-Creating-a-Unique-List-of-All-Genres">3.1 Creating a Unique List of All Genres<a class="anchor-link" href="#3.1-Creating-a-Unique-List-of-All-Genres">¶</a></h3><p>As evident in the artist genre column, each artist is associated with one or more genres listed in a structured format. The following code compiles a <strong>unique list</strong> encompassing all genres.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8659,20 +8651,7 @@ a.anchor-link {
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">genre_list</span><span class="p">:</span>
       <span class="k">if</span> <span class="n">j</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_genre_list</span><span class="p">:</span>
         <span class="n">all_genre_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_genre_list</span><span class="p">))</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">all_genre_list</span><span class="p">)</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -8687,13 +8666,45 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>748
-748
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We observe a total of 748 sub-genres within the dataset. These genres are then used as distinct features for our DataFrame.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="3.2-Creating-the-Sparse-Matrix">3.2 Creating the Sparse Matrix<a class="anchor-link" href="#3.2-Creating-the-Sparse-Matrix">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The Sparse Matrix that is created is then later combined with the Main DataFrame to train the Nearest Neighbor Algorithm.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8716,20 +8727,8 @@ a.anchor-link {
 
     <span class="n">list_of_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
     <span class="n">row</span><span class="o">=</span><span class="p">[]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_row</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_row</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_row</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -8747,17 +8746,6 @@ a.anchor-link {
 748
 </pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.2-Creating-a-Sparse-Matrix">3.2 Creating a Sparse Matrix<a class="anchor-link" href="#3.2-Creating-a-Sparse-Matrix">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8954,35 +8942,14 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df_genre</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Index(['irish singer-songwriter', 'modern rock', 'pov: indie', 'dance pop',
-       'pop', 'pop dance', 'pop rap', 'filter house', 'nu disco', 'hip hop',
-       ...
-       'modern dream pop', 'korean r&amp;b', 'symphonic rock',
-       'indie rock italiano', 'italian pop', 'oulu metal', 'sped up',
-       'indie surf', 'surf punk', 'id'],
-      dtype='object', length=749)</pre>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="3.3-Merging-Both-of-the-DataFrames">3.3 Merging Both of the DataFrames<a class="anchor-link" href="#3.3-Merging-Both-of-the-DataFrames">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8993,7 +8960,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.3-Merging-Both-of-the-DataFrames">3.3 Merging Both of the DataFrames<a class="anchor-link" href="#3.3-Merging-Both-of-the-DataFrames">¶</a></h3>
+<p>As mentioned previously, the dataframe and sparse matrix are merged.</p>
 </div>
 </div>
 </div>
@@ -9044,10 +9011,10 @@ a.anchor-link {
 <th>year</th>
 <th>popularity</th>
 <th>duration_ms</th>
-<th>uri</th>
 <th>id</th>
 <th>acousticness</th>
 <th>danceability</th>
+<th>energy</th>
 <th>...</th>
 <th>dreamo</th>
 <th>modern dream pop</th>
@@ -9070,10 +9037,10 @@ a.anchor-link {
 <td>2014-05-20</td>
 <td>0</td>
 <td>241688</td>
-<td>spotify:track:7dS5EaCoMnN7DzlpT6aRn2</td>
 <td>7dS5EaCoMnN7DzlpT6aRn2</td>
 <td>0.6340</td>
 <td>0.566</td>
+<td>0.664</td>
 <td>...</td>
 <td>0</td>
 <td>0</td>
@@ -9094,10 +9061,10 @@ a.anchor-link {
 <td>2010-08-09</td>
 <td>79</td>
 <td>213293</td>
-<td>spotify:track:2V4bv1fNWfTcyRJKmej6Sj</td>
 <td>2V4bv1fNWfTcyRJKmej6Sj</td>
 <td>0.1790</td>
 <td>0.768</td>
+<td>0.820</td>
 <td>...</td>
 <td>0</td>
 <td>0</td>
@@ -9118,10 +9085,10 @@ a.anchor-link {
 <td>2017-07-21</td>
 <td>89</td>
 <td>180386</td>
-<td>spotify:track:7KA4W4McWYRpgf0fWsJZWB</td>
 <td>7KA4W4McWYRpgf0fWsJZWB</td>
 <td>0.3710</td>
 <td>0.558</td>
+<td>0.559</td>
 <td>...</td>
 <td>0</td>
 <td>0</td>
@@ -9142,10 +9109,10 @@ a.anchor-link {
 <td>2013-01-01</td>
 <td>73</td>
 <td>214147</td>
-<td>spotify:track:3gbBpTdY8lnQwqxNCcf795</td>
 <td>3gbBpTdY8lnQwqxNCcf795</td>
 <td>0.0755</td>
 <td>0.679</td>
+<td>0.715</td>
 <td>...</td>
 <td>0</td>
 <td>0</td>
@@ -9166,10 +9133,10 @@ a.anchor-link {
 <td>2005-11-28</td>
 <td>87</td>
 <td>218093</td>
-<td>spotify:track:3ZFTkvIE7kyPt6Nu3PEa7V</td>
 <td>3ZFTkvIE7kyPt6Nu3PEa7V</td>
 <td>0.2840</td>
 <td>0.778</td>
+<td>0.824</td>
 <td>...</td>
 <td>0</td>
 <td>0</td>
@@ -9184,7 +9151,7 @@ a.anchor-link {
 </tr>
 </tbody>
 </table>
-<p>5 rows × 770 columns</p>
+<p>5 rows × 768 columns</p>
 </div>
 </div>
 </div>
@@ -9213,9 +9180,9 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 5100 entries, 0 to 5099
-Columns: 770 entries, name to surf punk
-dtypes: float64(9), int64(753), object(8)
-memory usage: 30.0+ MB
+Columns: 768 entries, name to surf punk
+dtypes: float64(9), int64(753), object(6)
+memory usage: 29.9+ MB
 </pre>
 </div>
 </div>
@@ -9250,7 +9217,18 @@ memory usage: 30.0+ MB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="4.1-Applying-WCSS-Method-to-Identify-the-Elbow-Point">4.1 Applying WCSS Method to Identify the Elbow Point<a class="anchor-link" href="#4.1-Applying-WCSS-Method-to-Identify-the-Elbow-Point">¶</a></h3>
+<h3 id="4.1-WCSS-Method">4.1 WCSS Method<a class="anchor-link" href="#4.1-WCSS-Method">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Utilizing the Within Cluster Sum of Squares (WCSS) method to pinpoint the elbow point.</p>
 </div>
 </div>
 </div>
@@ -9343,7 +9321,7 @@ memory usage: 30.0+ MB
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<style>#sk-container-id-1 {
+<style>#sk-container-id-9 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: black;
   --sklearn-color-line: gray;
@@ -9373,15 +9351,15 @@ memory usage: 30.0+ MB
   }
 }
 
-#sk-container-id-1 {
+#sk-container-id-9 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-9 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-9 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -9393,7 +9371,7 @@ memory usage: 30.0+ MB
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-9 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -9401,7 +9379,7 @@ memory usage: 30.0+ MB
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-9 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -9411,7 +9389,7 @@ memory usage: 30.0+ MB
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-9 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -9427,14 +9405,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-9 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-9 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -9442,28 +9420,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-9 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-9 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-9 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-9 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-9 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9481,14 +9459,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-9 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-9 label.sk-toggleable__label {
   cursor: pointer;
   display: block;
   width: 100%;
@@ -9498,7 +9476,7 @@ clickable and can be expanded/collapsed.
   text-align: center;
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-9 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -9506,13 +9484,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-9 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-9 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -9521,12 +9499,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-9 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-9 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -9534,79 +9512,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-9 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-9 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-9 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-9 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-9 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-9 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-9 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-9 div.sk-label label.sk-toggleable__label,
+#sk-container-id-9 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-9 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-9 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-9 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-9 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-9 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -9616,18 +9594,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-9 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-9 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-9 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -9714,7 +9692,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-9 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -9729,25 +9707,25 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-9 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-9 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-9 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div class="sk-top-container" id="sk-container-id-1"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=10, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"/><label class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted" for="sk-estimator-id-1">  KMeans<a class="sk-estimator-doc-link fitted" href="https://scikit-learn.org/1.4/modules/generated/sklearn.cluster.KMeans.html" rel="noreferrer" target="_blank">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=10, random_state=42)</pre></div> </div></div></div></div>
+</style><div class="sk-top-container" id="sk-container-id-9"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=10, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"/><label class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted" for="sk-estimator-id-9">  KMeans<a class="sk-estimator-doc-link fitted" href="https://scikit-learn.org/1.4/modules/generated/sklearn.cluster.KMeans.html" rel="noreferrer" target="_blank">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=10, random_state=42)</pre></div> </div></div></div></div>
 </div>
 </div>
 </div>
@@ -9780,6 +9758,17 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="4.3-Visualizing-the-Cluster">4.3 Visualizing the Cluster<a class="anchor-link" href="#4.3-Visualizing-the-Cluster">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The code beloew produces a radar chart via Plotly to illustrate dataset clusters. It computes the mean feature values for each cluster and displays them on the radar chart. Each cluster is depicted by a shaded region on the radar chart, with distinct colors denoting different clusters. The radial axis indicates the feature value range, while the angular axis represents various features.</p>
 </div>
 </div>
 </div>
@@ -9891,7 +9880,18 @@ Name: name, Length: 724, dtype: object</pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The code below extracts specific columns from the DataFrame <code>merged_df</code>, forming a new DataFrame named <code>dataset</code> comprising relevant attributes associated with music tracks. Additionally, it incorporates additional genre information sourced from the <code>df_genre</code> DataFrame. Finally, the <strong>id</strong> column is designated as the index of the resulting DataFrame for further analysis.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9904,20 +9904,8 @@ Name: name, Length: 724, dtype: object</pre>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="n">list1</span><span class="o">+</span><span class="n">list2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="n">dataset</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10495,6 +10483,17 @@ Name: name, Length: 724, dtype: object</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The code below initializes a Nearest Neighbors model <code>model_knn</code> using the brute-force algorithm for nearest neighbor search, with cosine distance as the metric. After initialization, the model is fitted to the dataset matrix <code>dataset_matrix</code>, enabling it to learn the relationships between data points based on their feature vectors.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -10517,7 +10516,7 @@ Name: name, Length: 724, dtype: object</pre>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<style>#sk-container-id-2 {
+<style>#sk-container-id-10 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: black;
   --sklearn-color-line: gray;
@@ -10547,15 +10546,15 @@ Name: name, Length: 724, dtype: object</pre>
   }
 }
 
-#sk-container-id-2 {
+#sk-container-id-10 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 pre {
+#sk-container-id-10 pre {
   padding: 0;
 }
 
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-10 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -10567,7 +10566,7 @@ Name: name, Length: 724, dtype: object</pre>
   width: 1px;
 }
 
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-10 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -10575,7 +10574,7 @@ Name: name, Length: 724, dtype: object</pre>
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 div.sk-container {
+#sk-container-id-10 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -10585,7 +10584,7 @@ Name: name, Length: 724, dtype: object</pre>
   position: relative;
 }
 
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-10 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -10601,14 +10600,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-10 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-10 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -10616,28 +10615,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-10 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-10 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-10 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-10 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-10 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10655,14 +10654,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-10 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-10 label.sk-toggleable__label {
   cursor: pointer;
   display: block;
   width: 100%;
@@ -10672,7 +10671,7 @@ clickable and can be expanded/collapsed.
   text-align: center;
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-10 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -10680,13 +10679,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-10 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-2 div.sk-toggleable__content {
+#sk-container-id-10 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -10695,12 +10694,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-10 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-10 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -10708,79 +10707,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-10 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-10 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-10 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-10 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-10 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-10 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-10 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-10 div.sk-label label.sk-toggleable__label,
+#sk-container-id-10 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-10 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-10 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-10 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-10 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-10 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -10790,18 +10789,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-10 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-10 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-10 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -10888,7 +10887,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-10 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -10903,25 +10902,25 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-10 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-10 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-10 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div class="sk-top-container" id="sk-container-id-2"><div class="sk-text-repr-fallback"><pre>NearestNeighbors(algorithm='brute', metric='cosine')</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"/><label class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted" for="sk-estimator-id-2">  NearestNeighbors<a class="sk-estimator-doc-link fitted" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.NearestNeighbors.html" rel="noreferrer" target="_blank">?<span>Documentation for NearestNeighbors</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>NearestNeighbors(algorithm='brute', metric='cosine')</pre></div> </div></div></div></div>
+</style><div class="sk-top-container" id="sk-container-id-10"><div class="sk-text-repr-fallback"><pre>NearestNeighbors(algorithm='brute', metric='cosine')</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"/><label class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted" for="sk-estimator-id-10">  NearestNeighbors<a class="sk-estimator-doc-link fitted" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.NearestNeighbors.html" rel="noreferrer" target="_blank">?<span>Documentation for NearestNeighbors</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>NearestNeighbors(algorithm='brute', metric='cosine')</pre></div> </div></div></div></div>
 </div>
 </div>
 </div>
@@ -10956,8 +10955,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_uri</span> <span class="o">=</span> <span class="s1">'spotify:track:7dS5EaCoMnN7DzlpT6aRn2'</span>
-<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'uri'</span><span class="p">]</span><span class="o">==</span><span class="n">search_uri</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_id</span> <span class="o">=</span> <span class="s1">'7dS5EaCoMnN7DzlpT6aRn2'</span>
+<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">==</span><span class="n">search_id</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">model_knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">query_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
@@ -11028,8 +11027,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_uri</span> <span class="o">=</span> <span class="s1">'spotify:track:5ry2OE6R2zPQFDO85XkgRb'</span>
-<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'uri'</span><span class="p">]</span><span class="o">==</span><span class="n">search_uri</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_id</span> <span class="o">=</span> <span class="s1">'5ry2OE6R2zPQFDO85XkgRb'</span>
+<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">==</span><span class="n">search_id</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">model_knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">query_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
@@ -11100,8 +11099,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_uri</span> <span class="o">=</span> <span class="s1">'spotify:track:3QXGTfSo23CBfI0KShmIm3'</span>
-<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'uri'</span><span class="p">]</span><span class="o">==</span><span class="n">search_uri</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">search_id</span> <span class="o">=</span> <span class="s1">'3QXGTfSo23CBfI0KShmIm3'</span>
+<span class="n">query_index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">==</span><span class="n">search_id</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">model_knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">query_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
